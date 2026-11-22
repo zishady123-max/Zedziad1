@@ -1,0 +1,663 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>معارجي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<script>document.documentElement.lang='ar';document.documentElement.dir='rtl';</script>
+<style>
+/* Layout: calm study desk. Sidebar (right) on desktop, bottom bar on phones. Flat sections, hairlines, round check circles. */
+:root{
+  --bg:#eef2f0;--card:#fbfcfb;--ink:#1d2d29;--mut:#677a73;--line:#dbe4e0;
+  --acc:#2d6a60;--acc-soft:#e1eeea;--gold:#9a7a3e;--on-acc:#ffffff;--warn:#b0643c;
+  --f-ui:"IBM Plex Sans Arabic","Noto Naskh Arabic",system-ui,sans-serif;
+  --f-disp:"Aref Ruqaa","IBM Plex Sans Arabic",serif;
+  --side:224px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1514;--card:#141e1c;--ink:#e3ece8;--mut:#8ea29a;--line:#233431;
+  --acc:#62c4b0;--acc-soft:#173029;--gold:#d2b06a;--on-acc:#0d1514;--warn:#e09a72;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1514;--card:#141e1c;--ink:#e3ece8;--mut:#8ea29a;--line:#233431;
+  --acc:#62c4b0;--acc-soft:#173029;--gold:#d2b06a;--on-acc:#0d1514;--warn:#e09a72;color-scheme:dark}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15.5px/1.85 var(--f-ui);
+}
+.emo{filter:grayscale(.55) opacity(.8);font-style:normal}
+button{font:inherit;color:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:3px 10px;min-width:0}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+textarea{width:100%;min-height:84px;resize:vertical}
+.app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:100vh}
+/* nav */
+nav{position:sticky;top:0;align-self:start;height:100vh;padding:28px 18px;border-inline-end:1px solid var(--line);display:flex;flex-direction:column;gap:4px;background:var(--bg)}
+.brand{font:700 30px/1.2 var(--f-disp);color:var(--acc);margin:0 10px 22px}
+nav button{display:flex;align-items:center;gap:12px;border:0;background:none;color:var(--mut);padding:9px 12px;border-radius:11px;text-align:start;font-weight:500}
+nav button .emo{font-size:18px;width:24px;text-align:center}
+nav button.on{background:var(--acc-soft);color:var(--acc)}
+nav button:hover:not(.on){color:var(--ink)}
+.navfoot{margin-top:auto;font-size:13px;color:var(--mut);padding:0 12px}
+main{padding-block:30px 110px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));max-width:980px;width:100%}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:6px}
+h1{font:700 30px/1.3 var(--f-disp);margin:0;color:var(--ink)}
+.sub{color:var(--mut);font-size:14px}
+.quote{color:var(--gold);font:700 17px/1.8 var(--f-disp);margin:2px 0 18px}
+h2{font:600 17px/1.5 var(--f-ui);margin:0}
+h3{font:600 15.5px/1.6 var(--f-ui);margin:0}
+.pill{font-size:12.5px;color:var(--acc);background:var(--acc-soft);border-radius:20px;padding:0 10px;white-space:nowrap;display:inline-block;line-height:1.7}
+.pill.g{color:var(--gold);background:transparent;border:1px solid var(--line)}
+.mut{color:var(--mut)}.sm{font-size:13.5px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:3px 14px;font-size:14px}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.pri{background:var(--acc);color:var(--on-acc);border-color:var(--acc)}
+.btn.pri:hover{color:var(--on-acc);opacity:.92}
+.btn.sm{padding:0 10px;font-size:13px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sw{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:20px;padding:2px 14px 2px 10px;background:var(--card);font-size:14px}
+.sw.on{background:var(--acc);color:var(--on-acc);border-color:var(--acc)}
+/* day strip */
+.strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:14px 0 18px}
+.strip button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:7px 2px 6px;display:flex;flex-direction:column;align-items:center;line-height:1.35}
+.strip button b{font-weight:600;font-size:14px}
+.strip button small{color:var(--mut);font-size:11.5px}
+.strip button i{display:block;height:3px;width:58%;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden}
+.strip button i u{display:block;height:100%;background:var(--acc);width:0}
+.strip button.on{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.strip button.on small{color:var(--on-acc);opacity:.85}
+.strip button.on i{background:rgba(255,255,255,.3)}
+.strip button.on i u{background:var(--on-acc)}
+.strip button.now:not(.on){border-color:var(--acc)}
+.bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--acc);border-radius:6px;transition:width .3s}
+/* sections */
+.sec{padding:16px 0 12px;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0}
+.sh{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin-bottom:4px}
+.sh .when{color:var(--mut);font-size:13px}
+.row{display:flex;align-items:flex-start;gap:12px;padding:7px 0}
+.row+.row{border-top:1px dashed var(--line)}
+.row .t{flex:1;min-width:0}
+.row small{display:block;color:var(--mut);font-size:13px;line-height:1.6}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:3px 0 0;padding:0;border:1.8px solid var(--mut);border-radius:50%;background:transparent;cursor:pointer;position:relative}
+input[type=checkbox]:checked{background:var(--acc);border-color:var(--acc)}
+input[type=checkbox]:checked::after{content:"";position:absolute;inset:4px 6px 6px 6px;border:solid var(--on-acc);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.pi{width:100%;margin-top:3px;font-size:13.5px;padding:1px 9px;background:transparent;border-style:dashed}
+.fin{flex:none;border:1px solid var(--line);background:none;color:var(--acc);border-radius:9px;font-size:12.5px;padding:0 10px;margin-top:3px}
+.fin:hover{border-color:var(--acc)}
+.done .tt{color:var(--mut);text-decoration:line-through;text-decoration-color:var(--line)}
+.note{color:var(--mut);font-size:14px;padding:6px 0}
+.en{direction:ltr;text-align:left;font:400 15px/1.5 system-ui,sans-serif}
+.tagx{font-size:11.5px;color:var(--gold);border:1px solid var(--line);border-radius:8px;padding:0 6px;margin-inline-start:6px}
+.ex{font-size:11.5px;color:var(--mut);border:1px solid var(--line);border-radius:8px;padding:0 6px;margin-inline-start:6px}
+/* edit controls */
+.ed{width:100%;padding:2px 9px}
+.ctl{display:none;flex:none;gap:2px}
+.em .ctl{display:inline-flex}
+.ctl button{border:0;background:none;color:var(--mut);padding:0 6px;font-size:15px;border-radius:7px}
+.ctl button:hover{background:var(--acc-soft);color:var(--acc)}
+.ctl .x:hover{color:var(--warn)}
+.edbar{display:none;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0}
+.em .edbar{display:flex}
+.edbar label{font-size:13px;color:var(--mut);display:flex;gap:6px;align-items:center}
+.edbar input[type=number]{width:70px}
+.noem{display:block}.em .noem{display:none}
+.yesem{display:none}.em .yesem{display:block}
+.fab{position:fixed;inset-inline-start:max(18px,env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.fab.on{background:var(--acc);color:var(--on-acc);border-color:var(--acc)}
+/* curriculum */
+.grp{font-size:13px;color:var(--gold);letter-spacing:.04em;margin:26px 0 6px}
+details{border-top:1px solid var(--line);padding:2px 0}
+summary{cursor:pointer;padding:10px 0;display:flex;align-items:center;gap:10px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"";width:7px;height:7px;border:solid var(--mut);border-width:0 0 1.6px 1.6px;transform:rotate(45deg);transition:transform .2s;flex:none;margin-inline-end:4px}
+details[open]>summary::before{transform:rotate(-45deg)}
+summary .nm{font-weight:600;flex:1;min-width:0}
+.stg{margin:8px 0 2px;display:flex;align-items:center;gap:8px;color:var(--acc);font-size:14px;font-weight:600}
+.stg .ed{width:auto;flex:1}
+.focus{background:var(--acc-soft);border-radius:14px;padding:12px 16px;margin:10px 0 4px}
+.sel{max-width:170px;font-size:13px;padding:0 6px}
+.kv{display:flex;align-items:center;gap:10px;padding:6px 0}
+.kv>span{flex:1}
+/* week */
+.sc{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0}
+.sc .n{display:flex;gap:4px}
+.sc label{cursor:pointer;min-width:34px;text-align:center;border:1px solid var(--line);border-radius:9px;padding:0 6px;font-size:14px}
+.sc input{display:none}
+.sc label:has(input:checked){background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.hrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+.hrs div{border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.hrs b{font:600 22px/1.3 var(--f-ui);display:block;font-variant-numeric:tabular-nums}
+.box{border:1px solid var(--line);border-radius:14px;padding:6px 16px 12px;margin:12px 0;background:var(--card)}
+.box>h3{margin:10px 0 2px}
+/* dialog, toast */
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:20px 22px;width:min(420px,92vw);font-family:var(--f-ui)}
+dialog::backdrop{background:rgba(10,20,18,.45)}
+dialog h3{margin-bottom:10px}
+.fld{display:flex;flex-direction:column;gap:3px;margin:8px 0}
+.fld>span{font-size:13px;color:var(--mut)}
+.chs{display:flex;flex-wrap:wrap;gap:6px}
+.chs label{display:flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:0 10px;font-size:14px}
+.chs input{width:18px;height:18px;margin:0}
+.dbtn{display:flex;gap:8px;justify-content:flex-start;margin-top:14px}
+#toast{position:fixed;inset-inline:0;bottom:calc(76px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;z-index:30;pointer-events:none}
+#toast div{pointer-events:auto;background:var(--ink);color:var(--bg);border-radius:12px;padding:6px 16px;display:flex;gap:14px;align-items:center;font-size:14px;max-width:92vw}
+#toast button{border:0;background:none;color:var(--gold);font-weight:600;padding:0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #toast button{color:#7a5a1c}}
+:root[data-theme="dark"] #toast button{color:#7a5a1c}
+.sec,.box,details{scroll-margin-top:16px}
+section.tab{display:none}section.tab.on{display:block}
+/* phone */
+@media (max-width:760px){
+  .app{display:block}
+  nav{position:fixed;inset:auto 0 0 0;height:auto;flex-direction:row;padding:6px max(8px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px));gap:0;border-top:1px solid var(--line);border-inline-end:0;z-index:15;justify-content:space-around}
+  .brand,.navfoot{display:none}
+  nav button{flex-direction:column;gap:0;padding:4px 2px;font-size:11.5px;flex:1;justify-content:center;align-items:center;text-align:center;border-radius:10px}
+  nav button .emo{font-size:18px;line-height:1.3}
+  main{padding-block:20px 130px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  h1{font-size:25px}
+  .fab{bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  #toast{bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+  .strip{gap:4px}.strip button{padding:6px 0 5px}.strip button b{font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app" id="app">
+<nav id="nav"><div class="brand">معارجي</div></nav>
+<main id="main">
+  <section class="tab" id="t-day"></section>
+  <section class="tab" id="t-cur"></section>
+  <section class="tab" id="t-rd"></section>
+  <section class="tab" id="t-mem"></section>
+  <section class="tab" id="t-ib"></section>
+  <section class="tab" id="t-uni"></section>
+  <section class="tab" id="t-wk"></section>
+</main>
+</div>
+<button class="btn fab" id="fab" data-a="em">✎ تعديل</button>
+<div id="toast"></div>
+<dialog id="dlg"></dialog>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s);
+const uid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
+const esc=x=>String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const num=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const KEY='maarij3';
+
+/* ============ بيانات المنهج (من «معارج العلوم») ============ */
+/* * = يُؤخذ مع الشيخ أو في درس أسبوعي (يُستثنى من الجدول التلقائي) ، + = إضافة مقترحة */
+const D_CUR=[
+['bag','الحقيبة التأسيسية العامة',1,[['خمسة كتب (والسادس «شرح الأربعين النووية» في قائمة القراءة)',[
+ 'المختصر في تفسير القرآن الكريم (مركز تفسير)','العقيدة الميسرة من الكتاب والسنة',
+ 'الفقه الميسر (أو فقه السنة لسيد سابق)','الرحيق المختوم',
+ 'الموسوعة الميسرة في التاريخ الإسلامي']]]],
+['bag','الحقيبة التأسيسية الخاصة',1,[['أهم كتاب من المرحلة الأولى في كل علم',[
+ 'العقيدة الميسرة من الكتاب والسنة','شرح مقدمة أصول التفسير (الطيار)','عمدة التفسير (أحمد شاكر)',
+ 'القول المختصر شرح نخبة الفكر','أخصر المختصرات (بديل متن أبي شجاع في الفقه)','شرح الورقات في أصول الفقه (الفوزان)',
+ 'التحفة السنية شرح الأجرومية','حصول المسرة بتسهيل لامية الأفعال','التبيان في شرح مئة المعاني والبيان',
+ 'فقه اللغة العربية (إبراهيم نجا)','شرح الدمنهوري على السلم المنورق']]]],
+['alat','اللغة العربية',0,[
+ ['النحو · المرحلة ١',['سلسلة مهارات التحليل النحوي (العمري)','التحفة السنية شرح الأجرومية']],
+ ['الصرف · المرحلة ١',['*الصرف الصغير','الأساس في الصرف','مختصر الخطيب في علم التصريف']],
+ ['النحو · المرحلة ٢',['محاضرات محمد رشيد في النحو','شرح قطر الندى (ابن هشام)']],
+ ['الصرف · المرحلة ٢',['حصول المسرة بتسهيل لامية الأفعال','الطرة بتوضيح لامية الأفعال','شرح تصريف العزي (التفتازاني)','معاني الأبنية في العربية']],
+ ['البلاغة · المرحلة ١',['غاية المبتدي في الفنون الثلاثة (محمد رشيد)','التبيان في شرح مئة المعاني والبيان']],
+ ['النحو · المرحلة ٣',['شرح ابن عقيل على الألفية','أوضح المسالك (ابن هشام)']],
+ ['البلاغة · المرحلة ٢',['حلية اللب المصون شرح الجوهر المكنون','المنهاج الواضح في البلاغة']],
+ ['البلاغة · المرحلة ٣',['عروس الأفراح شرح تلخيص المفتاح','دلائل الإعجاز (الجرجاني)','أسرار البلاغة (الجرجاني)']],
+ ['فقه اللغة والمعاجم والدلالة',['دراسات في فقه اللغة (صبحي الصالح)','فقه اللغة العربية (إبراهيم نجا)','المصباح المنير (الفيومي) معجمًا','الصاحبي (ابن فارس)','مقاييس اللغة','علم الدلالة (أحمد مختار عمر)','المزهر (السيوطي)','الخصائص (ابن جني)','القاموس المحيط']],
+ ['الأدب والعروض والإملاء',['جواهر الأدب (الهاشمي)','شرح المعلقات السبع (الزوزني)','المنتخب من أدب العرب','الوسيط في الأدب العربي','البيان والتبيين (الجاحظ)','أدب الكاتب (ابن قتيبة)','وحي القلم (الرافعي)','ميزان الذهب في صناعة شعر العرب','أهدى سبيل إلى علمي الخليل','قواعد الإملاء (عبد السلام هارون)','علم الكتابة العربية (غانم الحمد)']],
+ ['النحو · المرحلة ٤ والأصوات',['شرح موصل الطلب إلى قواعد الإعراب','معاني النحو (السامرائي)','مغني اللبيب (ابن هشام)','المدخل إلى علم أصوات العربية','سر صناعة الإعراب (ابن جني)']]]],
+['alat','المنطق والجدل',0,[
+ ['المنطق · المرحلة ١',['سلسلة فهم المنطق (جاسم سلطان)','إيضاح المبهم في معاني السلم']],
+ ['المنطق · المرحلة ٢',['المغالطات المنطقية (عادل مصطفى)','شرح السلم للأخضري']],
+ ['المنطق · المرحلة ٣',['معيار العلم (الغزالي)','محك النظر (الغزالي)','التقريب لحد المنطق (ابن حزم)','الرد على المنطقيين (ابن تيمية)']],
+ ['الجدل والمناظرة',['أصول الجدل والمناظرة (العثمان)','آداب البحث والمناظرة (الشنقيطي)','علم الجدل والمناظرة (الشثري)','المعونة في الجدل (الشيرازي)','علم الجذل في علم الجدل (الطوفي)']]]],
+['alat','أصول الفقه والمقاصد',0,[
+ ['المدخل',['المنهجية في دراسة أصول الفقه (محاضرة)','أصول الفقه: النشأة والتطور (الباحسين)']],
+ ['المرحلة ١',['*المحلى على الورقات','الإملاء على شرح المحلي (أمجد رشيد)']],
+ ['المرحلة ٢',['الوجيز في أصول التشريع الإسلامي']],
+ ['المرحلة ٣',['البدر الطالع شرح جمع الجوامع','اللباب في أصول الفقه (صفوان داودي)','تأصيل القواعد الأصولية']],
+ ['مقاصد الشريعة',['مدخل إلى مقاصد الشريعة (الريسوني)','المختصر الوجيز إلى مقاصد التشريع','مقاصد الشريعة الإسلامية (ابن عاشور)','مقاصد الشريعة ومكارمها (علال الفاسي)','الموافقات (الشاطبي)','قواعد الأحكام في مصالح الأنام (العز)']]]],
+['gaya','تزكية النفس',0,[
+ ['المرحلة ١ · نحو ٤ أشهر',['*منظومة الآداب الشرعية','التحفة العراقية (ابن تيمية)','رسالة العبودية','الداء والدواء','الوابل الصيب','من عاش على شيء مات عليه','الرقائق (الراشد)','تحصيل المرام في علاج الشهوات','رحلة إلى الدار الآخرة','موسوعة أسماء الله الحسنى ج١']],
+ ['المرحلة ٢ · نحو ٦ أشهر',['من كتم داءه قتله','سراج الغرباء','الحكم العطائية','بداية الهداية (الغزالي)','منهاج العابدين','المستخلص في تزكية الأنفس','تهذيب مدارج السالكين','موسوعة أسماء الله الحسنى ج٢','الآداب الشرعية (ابن مفلح)']],
+ ['المرحلة ٣ · نحو سنة',['مقدمة الظلال وتفسير البقرة منه','التذكرة (القرطبي)','أعمال القلوب (خالد السبت)','موسوعة أسماء الله الحسنى ج٣ و٤','آيات الله في الأنفس والآفاق (النابلسي)','إحياء علوم الدين']]]],
+['gaya','العقيدة والفرق',0,[
+ ['المرحلة ١ · نحو ٣ أشهر',['العقيدة الميسرة من الكتاب والسنة','ثلاثة الأصول وأدلتها (تعليقات العصيمي)','العقيدة في ضوء الكتاب والسنة (الأشقر)']],
+ ['المرحلة ٢ · نحو ٨ أشهر',['شرح لمعة الاعتقاد (العصيمي)','كتاب التوحيد (تعليقات العصيمي)','شرح العقيدة الواسطية (ابن عثيمين)','المغربة في شرح العقيدة القيروانية']],
+ ['المرحلة ٣ · نحو ٨ أشهر',['شرح العقيدة الطحاوية (الرباني)','الخراسانية شرح عقيدة الرازيين','شرح العقيدة التدمرية (الخميس)']],
+ ['الفرق والأديان والمذاهب',['مقدمات في علم مقالات الفرق','الفرق بين الفرق (البغدادي)','مقالات الإسلاميين (الأشعري)','مختصر منهاج السنة','الملل والنحل (الشهرستاني)','دليل العقول الحائرة','مذاهب فكرية معاصرة (قطب)']],
+ ['المرحلة ٤ · متقدم',['ضوابط التكفير عند أهل السنة','قواعد معرفة البدع (الجيزاني)','أحاديث العقيدة المتوهم إشكالها','شفاء العليل (ابن القيم)','الروح (ابن القيم)','الولاء والبراء (القحطاني)']]]],
+['gaya','التفسير وعلوم القرآن',0,[
+ ['التفسير · المرحلة ١',['*المصباح المنير (تهذيب تفسير ابن كثير)','المختصر في تفسير القرآن الكريم (مركز تفسير)','عمدة التفسير (أحمد شاكر)']],
+ ['علوم القرآن · المرحلة ١',['علوم القرآن: تاريخه وتصنيف أنواعه (الطيار)','مباحث في علوم القرآن (القطان)','التبيان في آداب حملة القرآن','فضائل القرآن (أبو عبيد)']],
+ ['التجويد · المرحلة ١',['تحقيق المنال شرح تحفة الأطفال','التجويد الميسر (مجمع الملك فهد)']],
+ ['أصول التفسير',['شرح مقدمة أصول التفسير (الطيار)','شرح أصول في التفسير (ابن عثيمين)','التحرير في أصول التفسير (الطيار)','شرح القواعد الحسان (السعدي)','قواعد الترجيح عند المفسرين (الحربي)','قواعد التفسير (خالد السبت)']],
+ ['التفسير · المرحلة ٢',['التفسير الوسيط (طنطاوي)']],
+ ['علوم القرآن · المرحلة ٢',['دراسات في علوم القرآن (فهد الرومي)','رغبة التيسير شرح منظومة الزمزمي']],
+ ['غريب القرآن والمعاني',['السراج في بيان غريب القرآن','تفسير المشكل من غريب القرآن (مكي)','مفردات ألفاظ القرآن (الراغب)','معاني القرآن (الزجاج)']],
+ ['أسباب النزول والمشكل',['دورة أسباب النزول (الطريفي)','الصحيح من أسباب النزول','دفع إيهام الاضطراب (الشنقيطي)','تأويل مشكل القرآن (ابن قتيبة)']],
+ ['التجويد · المرحلة ٢ والرسم',['شرح المقدمة الجزرية (غانم الحمد)','دروس أيمن سويد في التجويد','الميسر في علم رسم المصحف','الإعراب: الجدول في إعراب القرآن']],
+ ['المناهج والتدبر والمقاصد',['القول المختصر المبين في مناهج المفسرين','التفسير والمفسرون (الذهبي)','علم المناسبات (بازمول)','تناسق الدرر (السيوطي)','مقاصد السور (محاضرة وأهداف كل سورة)','مفاتيح التعامل مع القرآن (الخالدي)','التدبر: مفهومه وأركانه (السبت)','الوجوه والنظائر (القرعاوي)','طبقات المفسرين (السيوطي)']],
+ ['التفسير · المرحلة ٣ و٤',['تفسير الطبري','زاد المسير (ابن الجوزي)','المحرر الوجيز (ابن عطية)','في ظلال القرآن']],
+ ['علوم القرآن · المرحلة ٣ والقراءات',['الإتقان (السيوطي)','البرهان (الزركشي)','مناهل العرفان','مقدمات في علم القراءات','طيبة النشر (ابن الجزري)']]]],
+['gaya','الحديث وعلومه',0,[
+ ['المتون · المرحلة ١ · نحو ٨ أشهر',['رياض الصالحين','*عمدة الأحكام','الأدب المفرد (البخاري)','بلوغ المرام (منحة العلام)']],
+ ['المصطلح · المرحلة ١',['القول المختصر شرح نخبة الفكر','مدخل إلى علم الحديث (طارق عوض الله)']],
+ ['دواوين السنة · المرحلة ٢',['*صحيح البخاري','صحيح مسلم','سنن أبي داود','جامع الترمذي','سنن النسائي','سنن ابن ماجه','موطأ مالك','سنن الدارمي']],
+ ['شروح الحديث',['فتح الباري (ابن حجر)','المنهاج شرح صحيح مسلم (النووي)','معالم السنن (الخطابي)','تحفة الأحوذي','التمهيد (ابن عبد البر)']],
+ ['المصطلح · المرحلة ٢ و٣',['مقدمة ابن الصلاح','فتح المغيث (السخاوي)']],
+ ['غريب الحديث ومختلفه',['غريب الحديث (الخطابي)','النهاية في غريب الحديث (ابن الأثير)','اختلاف الحديث (الشافعي)','تأويل مختلف الحديث (ابن قتيبة)','أسباب ورود الحديث (السيوطي)']],
+ ['التخريج والرجال والعلل · متقدم',['أصول التخريج ودراسة الأسانيد (الطحان)','تحفة الأشراف (المزي)','التلخيص الحبير (ابن حجر)','خلاصة التأصيل في الجرح والتعديل','تقريب التهذيب','الكاشف (الذهبي)','مذكرة علل الحديث','شرح علل الترمذي (ابن رجب)','مناهج المحدثين (سعد آل حميد)']],
+ ['مطولات المتون · متقدم',['صحيح ابن خزيمة وابن حبان','السنن الكبرى (البيهقي)','مسند أحمد','المعاجم الثلاثة (الطبراني)']]]],
+['gaya','السيرة والشمائل',0,[
+ ['المرحلة ١ · نحو ٦ أشهر',['*فصول في سير النبي ﷺ','الأرجوزة الميئية (شرح ابن أبي العز)','الرحيق المختوم']],
+ ['الشمائل المحمدية',['شرح شمائل الترمذي (عبد الرزاق البدر)','جمع الوسائل (القاري)','سلسلة شرح الشمائل (وليد المنيسي)']],
+ ['المرحلة ٢ · نحو ٦ أشهر',['السيرة النبوية في ضوء المصادر الأصلية','سلسلة السيرة النبوية المرئية']],
+ ['المرحلة ٣ · نحو سنتين',['مصادر دراسة السيرة النبوية','الروض الأنف (السهيلي)','زاد المعاد (ابن القيم)']]]],
+['gaya','الفقه',0,[
+ ['المدخل والتاريخ',['المدخل إلى علم الفقه (دورة الشيخ)','تاريخ الفقه الإسلامي (الأشقر)','المذاهب الفقهية الأربعة: أئمتها وأطوارها','عدة الفقيه']],
+ ['الفقه الحنبلي · المرحلة ١ · نحو ٩ أشهر',['*زاد المستقنع']],
+ ['الفقه الحنبلي · المرحلة ٢ · نحو ٨ أشهر',['الروض المربع']],
+ ['القواعد الفقهية',['إيضاح القواعد الفقهية (اللحجي)','المواهب السنية شرح الفرائد البهية','قواعد ابن الملقن (الأشباه والنظائر)','الأشباه والنظائر (السيوطي)']],
+ ['الفقه الحنبلي · المرحلة ٣ · نحو سنتين',['حاشية ابن فيروز على الروض','حاشية أبا بطين على الروض','حاشية ابن قاسم على الروض']],
+ ['الفروق والإجماع',['الجمع والفرق (الجويني)','الفروق (القرافي)','الإقناع في مسائل الإجماع (ابن القطان)','الإجماع (ابن المنذر)']],
+ ['آيات الأحكام',['روائع البيان (الصابوني)','التفسير والبيان لأحكام القرآن (الطريفي)','تيسير البيان (الموزعي)']],
+ ['الفقه الحنبلي · المرحلة ٤ · نحو ٣ سنوات',['منتهى الإرادات','حاشية الشيخ منصور على المنتهى']],
+ ['الخلاف والمقارن',['الإفصاح (ابن هبيرة)','بداية المجتهد (ابن رشد)','الأوسط (ابن المنذر)']],
+ ['النوازل والفتوى والسياسة والاقتصاد',['المدخل لدراسة النوازل (الراشد)','وقائع النوازل (الجيزاني)','أضواء على السياسة الشرعية (العتيبي)','السياسة الشرعية (ابن تيمية)','الأحكام السلطانية (الماوردي)','ما لا يسع التاجر جهله','فقه المعاملات الحديثة (أبو سليمان)','طبقات الفقهاء (الشيرازي)']]]]
+];
+/* القراءة: الحقيبتان التمهيديتان من الكتاب أولًا، ثم إضافات مقترحة (+) */
+const D_RD=[
+['bag','الحقيبة التمهيدية الأولى (من معارج العلوم)',0,[['كتب',[
+ 'صفقات رابحة (خالد أبو شادي)','الطريق إلى القرآن (إبراهيم السكران)','فقه الاستدراك (محمد بن محمد إسماعيل)',
+ 'الخطة الربانية لذي النفس التقية (صلاح الخالدي)','صفة صلاة النبي ﷺ (الألباني)','أول مرة أصلي وكان للصلاة طعم آخر (خالد أبو شادي)',
+ 'من أدب الإسلام (عبد الفتاح أبو غدة)','إلى الجيل الصاعد (أحمد السيد)','شرح الأربعين النووية (ابن عثيمين)','المشوق إلى القراءة وطلب العلم (علي العمران)']]]],
+['bag','الحقيبة التمهيدية الثانية (من معارج العلوم)',0,[
+ ['الطالب والعلم',['مسلكيات (إبراهيم السكران)','معارج العلوم: من الأمية إلى الإمامة','اقرأ وارتق (علي العمران)','شرح حلية طالب العلم (ابن عثيمين)','صفحات من صبر العلماء (أبو غدة)']],
+ ['القلب والذكر',['مختصر منهاج القاصدين (ابن قدامة)','أذكار الصباح والمساء رواية ودراية (الطريفي)','صيد الخاطر (ابن الجوزي)','الفوائد (ابن القيم)','خلق المسلم (محمد الغزالي)','شرح رياض الصالحين (ابن عثيمين)','شرح أسماء الله الحسنى وصفاته الفضلى (النابلسي)','الفصل بين النفس والعقل (الطريفي)']],
+ ['الفكر والثقافة والرد على الشبهات',['الماجريات (إبراهيم السكران)','سلطة الثقافة الغالبة (إبراهيم السكران)','النبأ العظيم (محمد عبد الله دراز)','ماذا خسر العالم بانحطاط المسلمين (الندوي)','هكذا ظهر جيل صلاح الدين وهكذا عادت القدس (الكيلاني)','شبهات حول الإسلام (محمد قطب)','زخرف القول (العجلان والعجيري)','معركة النص (فهد العجلان)','ينبوع الغواية الفكرية (العجيري)','في الطريق إلى ثقافتنا (محمود شاكر)','صناعة الحياة (محمد أحمد الراشد)','في فقه الأولويات (القرضاوي)']]]],
+['add','إضافات: الفكر والثقافة الإسلامية',0,[
+ ['المرحلة ١',['الحلال والحرام في الإسلام (القرضاوي)+','الإيمان والحياة (القرضاوي)+','كيف نتعامل مع القرآن العظيم (القرضاوي)+','ثقافة الداعية (القرضاوي)+']],
+ ['المرحلة ٢',['حقائق الإسلام وأباطيل خصومه (العقاد)+','التفكير فريضة إسلامية (العقاد)+','خصائص التصور الإسلامي ومقوماته (سيد قطب)+','المستقبل لهذا الدين (سيد قطب)+']],
+ ['المرحلة ٣',['مقدمة ابن خلدون+','موقف العقل والعلم والعالم من رب العالمين (مصطفى صبري)+','درء تعارض العقل والنقل (ابن تيمية)+']]]],
+['add','إضافات: التاريخ والحضارة',0,[
+ ['المرحلة ١',['قصة الأندلس من الفتح إلى السقوط (السرجاني)+','قصة التتار من البداية إلى عين جالوت (السرجاني)+','ماذا قدم المسلمون للعالم (السرجاني)+','الدولة العثمانية: عوامل النهوض وأسباب السقوط (الصلابي)+']],
+ ['المرحلة ٢',['العواصم من القواصم (ابن العربي)+','فجر الإسلام (أحمد أمين)+','تاريخ الخلفاء (السيوطي)+']],
+ ['المرحلة ٣',['البداية والنهاية (ابن كثير)+','الكامل في التاريخ (ابن الأثير)+','قصة الحضارة (ول ديورانت)+']]]],
+['add','إضافات: الأدب والشعر',0,[
+ ['المرحلة ١',['العبرات (المنفلوطي)+','النظرات (المنفلوطي)+','الأيام (طه حسين)+','على هامش السيرة (طه حسين)+','كليلة ودمنة (ابن المقفع)+']],
+ ['المرحلة ٢',['رجال في الشمس (غسان كنفاني)+','اللص والكلاب (نجيب محفوظ)+','مختارات من ديوان المتنبي+','الشوقيات: مختارات (أحمد شوقي)+']]]],
+['add','إضافات: تطوير الذات والتفكير',0,[
+ ['المرحلة ١',['العادات الذرية (جيمس كلير)+','العمل العميق (كال نيوبورت)+','كيف تكسب الأصدقاء وتؤثر في الناس (ديل كارنيجي)+','العادات السبع للناس الأكثر فعالية (ستيفن كوفي)+']],
+ ['المرحلة ٢',['التفكير السريع والبطيء (دانيال كانمان)+','فن التفكير الواضح (رولف دوبلي)+']]]],
+['add','إضافات: الطب وأخلاقياته',0,[
+ ['المرحلة ١',['أن تكون فانيًا (أتول غاواندي) Being Mortal+','حين يصير النفس هواءً (بول كالانيثي) When Breath Becomes Air+','الطب النبوي (ابن القيم)+','أدب الطبيب (الرهاوي)+']],
+ ['المرحلة ٢',['فقه القضايا الطبية المعاصرة (القره داغي والمحمدي)+','أحكام الجراحة الطبية والآثار المترتبة عليها (الشنقيطي)+','الموسوعة الطبية الفقهية (أحمد كنعان)+','إمبراطور الأمراض (سيدهارتا موخرجي) The Emperor of All Maladies+']]]],
+['add','إضافات: السير والتراجم',0,[
+ ['المرحلة ١',['صور من حياة الصحابة (عبد الرحمن رأفت الباشا)+','صور من حياة التابعين (الباشا)+','رجال حول الرسول (خالد محمد خالد)+']],
+ ['المرحلة ٢',['ابن حنبل: حياته وعصره (أبو زهرة)+','ابن تيمية: حياته وعصره (أبو زهرة)+','مناقب الإمام أحمد (ابن الجوزي)+','سير أعلام النبلاء: مختارات (الذهبي)+']]]],
+['add','إضافات: الواقع والنهضة',0,[
+ ['المرحلة ١',['شروط النهضة (مالك بن نبي)+','وجهة العالم الإسلامي (مالك بن نبي)+','التفسير الإسلامي للتاريخ (عماد الدين خليل)+']],
+ ['المرحلة ٢',['الفكر الإسلامي الحديث وصلته بالاستعمار الغربي (محمد البهي)+']]]]
+];
+const ST0={'زاد المستقنع':1,'الصرف الصغير':1,'المحلى على الورقات':1,'منظومة الآداب الشرعية':1,'أخصر المختصرات (بديل متن أبي شجاع في الفقه)':2,
+ 'المصباح المنير (تهذيب تفسير ابن كثير)':1,'عمدة الأحكام':1,'صحيح البخاري':1,'فصول في سير النبي ﷺ':1};
+const MATN0=['الأرجوزة الميئية','منظومة الآداب الشرعية','متن الأجرومية','متن الورقات','الأصول الثلاثة وأدلتها','البيقونية في المصطلح','أخصر المختصرات','منظومة السعدي في القواعد الفقهية','لامية الأفعال','منظومة مئة المعاني والبيان','نخبة الفكر','ألفية ابن مالك'];
+const UNI0=[
+['الأسبوع ١ · ٢١–٢٦ نوفمبر',['Patient with Pain in the Loin','Congenital Anomalies of the Lower Urinary Tract','Patient with Urinary Retention or Flow Obstruction','Patient with Red Urine (Hematuria), including Stones and Tumors','CT: Cardiothoracic Trauma']],
+['الأسبوع ٢ · ٢٨ نوفمبر–٢ ديسمبر',['CT: Surgery of the Esophagus','CT: Surgery of the Mediastinum','CT: Surgery of the Pleura','CT: Surgery of the Lung','CT: Surgery of Heart Diseases']],
+['الأسبوع ٣ · ٥–٩ ديسمبر',['Congenital Anomalies / Head Trauma','Spinal Trauma / Spinal Tumors','Lumbar and Cervical Disc Prolapse / Cerebrovascular Accidents','Brain and Pituitary Tumors','Peripheral Nerve Injuries / Palsies']],
+['الأسبوع ٤ · ١٢–١٧ ديسمبر',['VS: Arterial Emergencies','VS: Venous Emergencies','VS: Chronic Ischemia & Limb Loss','VS: Approach to Chronic Leg Ulcers']],
+['الأسبوع ٥ · ١٩–٢٣ ديسمبر',['L15 Burns','L17 Principles of Reconstruction','Pediatric Surgery: Infant with Vomiting','Pediatric Surgery: Constipation, ARMs']],
+['الأسبوع ٦ · ٢٦–٣١ ديسمبر',['L16 Patient with Face Ulcer / Pigmented Facial Lesions','Pediatric Surgery: Respiratory Distress, Tumors','Pediatric Surgery: Anterior Abdominal Wall Defects, Bleeding per Rectum']]];
+const WO0=[['المرحلة ١ · ثبّت أولًا',1,['الصلوات الخمس في وقتها','السنن الرواتب','أذكار الصباح والمساء','أذكار بعد الصلاة']],
+ ['المرحلة ٢ · أضف بعد الثبات',0,['ورد قرآن يومي (غير الحفظ)','الوتر','ركعتا الضحى','صيام الاثنين والخميس']],
+ ['المرحلة ٣ · ترقَّ تدريجيًا',0,['قيام الليل (ابدأ بركعتين)','صدقة يومية ولو يسيرة','صيام أيام البيض','ورد استغفار ودعاء']]];
+const MM0=[['القرآن','q',['الآن: سورة النحل','وجه جديد يوميًا ثم يُثبَّت بتكراره','مراجعة ٥ أوجه قديمة يوميًا بالتدوير']],
+ ['الجمع بين الصحيحين · المجلد الأول','h',['٣ أحاديث يوميًا (≈ ١٨ في الأسبوع)','الجمعة: مراجعة حفظ الأسبوع','السند بالمعنى أولًا ثم المتن بلفظه']]];
+const WR0=['مراجعة الحفظ كاملًا','مراجعة دروس الشيخ والفقه','مراجعة محاضرات الجامعة','تحديث حالة الكتب في المنهج والقراءة','تقييم الأسبوع','ترتيب الأسبوع القادم'];
+const EV0=['الالتزام بالجدول','جودة الحفظ والمراجعة','التركيز بلا مشتتات','العبادات','مذاكرة الجامعة','الرياضة والنوم'];
+const DIS0=['الهاتف في غرفة أخرى أثناء الدراسة','إغلاق الإشعارات','مكان ثابت للدراسة بلا تلفاز','وقت واحد في اليوم للرسائل','النوم قبل منتصف الليل','اكتب هدف الكتلة في سطر قبل أن تبدأ'];
+const DN=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
+const TAGS={sport:'الرياضة',skill:'تعلم المهارة',int:'شرح الباطنة'};
+const TABS=[['day','اليوم','🌿'],['cur','المنهج','📖'],['rd','القراءة','☕'],['mem','الحفظ','🌙'],['ib','العبادات','🕊️'],['uni','الجامعة','🩺'],['wk','الأسبوع','🍃']];
+const QT={day:'قليلٌ دائم خير من كثير منقطع.',cur:'«من سلك طريقًا يلتمس فيه علمًا سهّل الله له به طريقًا إلى الجنة».',
+ rd:'«اقرأ باسم ربك الذي خلق».',mem:'«ولقد يسّرنا القرآن للذكر فهل من مدّكر».',ib:'«أحب الأعمال إلى الله أدومها وإن قلّ».',
+ uni:'ما تذاكره اليوم مريضٌ ستعالجه غدًا.',wk:'راجع أسبوعك بصدق، وابدأ الجديد بهمّة.'};
+const DQ=['«وقل ربّ زدني علمًا».','ابدأ بأول كتلة، والباقي يتبعها.','الهاتف بعيدًا، والنية صادقة، ثم ابدأ.','خطوة صغيرة اليوم، أثرٌ كبير غدًا.','«ربّ اشرح لي صدري ويسّر لي أمري».'];
+
+/* ============ الحالة ============ */
+let S,EM=false,TAB='day',SEL=0,WKS=null,IDX={},T=0,DN_=0;
+const dk=d=>d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+const today=(()=>{const d=new Date();d.setHours(0,0,0,0);return d})();
+const dIdx=d=>(d.getDay()+1)%7;
+const wStart=d=>{const w=new Date(d);w.setDate(w.getDate()-dIdx(d));w.setHours(0,0,0,0);return w};
+const dateOf=i=>{const d=new Date(WKS);d.setDate(d.getDate()+i);return d};
+const dayNum=d=>Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
+const weekNum=d=>Math.floor((dayNum(d)+2)/7); /* السبت أول الأسبوع */
+const fmt=(d,o)=>new Intl.DateTimeFormat('ar-EG',o).format(d);
+
+function mkB(n,st){let ex=0,add=0;if(n[0]=='*'){ex=1;n=n.slice(1)}if(n.slice(-1)=='+'){add=1;n=n.slice(0,-1)}return{id:uid(),n,st:st||0,pos:'',ex,add}}
+function mkSci(rows){return rows.map(([grp,n,off,stages])=>({id:uid(),grp,n,off:off?1:0,stages:stages.map(([sn,bs])=>({id:uid(),n:sn,books:bs.map(b=>{const o=mkB(b);o.st=ST0[o.n]||0;return o})}))}))}
+const allB=k=>S[k].flatMap(s=>s.stages.flatMap(st=>st.books));
+const it=(k,o)=>Object.assign({id:uid(),k},o||{});
+const sec=(t,min,items,o)=>Object.assign({id:uid(),t,min,when:'',tag:'',core:0,items},o||{});
+const bidOf=n=>{const b=allB('cur').find(x=>x.n==n);return b?b.id:''};
+function defDays(){
+ const SH=['زاد المستقنع','الصرف الصغير','المحلى على الورقات','منظومة الآداب الشرعية','زاد المستقنع','الصرف الصغير',null];
+ const WL=[null,['t','درس الشيخ'],['b','المصباح المنير (تهذيب تفسير ابن كثير)','درس التفسير'],['b','عمدة الأحكام','درس عمدة الأحكام'],['b','صحيح البخاري','درس صحيح البخاري'],['t','تسميع للشيخ بعد المغرب'],['b','فصول في سير النبي ﷺ','درس السيرة']];
+ const SP=['تمارين قوة للجزء العلوي','مشي سريع أو جري خفيف','تمارين قوة للجزء السفلي','كارديو متوسط','تمارين قوة للجسم كله','سباحة أو مشي طويل','مرونة وتمدد ونشاط خفيف'];
+ const out={};
+ for(let d=0;d<7;d++){
+  const fri=d==6,s=[];
+  s.push(sec('العبادات',0,[it('w')],{when:'على مدار اليوم',core:1}));
+  s.push(sec('الحفظ',90,fri?[it('t',{t:'مراجعة حفظ القرآن',pos:1,pk:'q'}),it('t',{t:'مراجعة أحاديث الأسبوع',pos:1,pk:'h'}),it('t',{t:'مراجعة المتون'})]
+     :[it('t',{t:'القرآن: حفظ جديد ومراجعة',pos:1,pk:'q'}),it('t',{t:'الجمع بين الصحيحين: ٣ أحاديث',pos:1,pk:'h'}),it('m')],{when:'بعد الفجر',core:1}));
+  s.push(sec('منهج الشيخ',60,SH[d]?[it('b',{bid:bidOf(SH[d])})]:[it('t',{t:'مراجعة ما أخذته مع الشيخ هذا الأسبوع'})],{when:'بعد الظهر'}));
+  if(!fri)s.push(sec('المنهج المكتوب',90,[it('c',{slot:0}),it('c',{slot:1})],{when:'بعد العصر'}));
+  s.push(sec('القراءة',45,[it('r')],{when:'قبل النوم'}));
+  s.push(sec('مذاكرة الجامعة',120,[it('u')],{when:'المساء',core:1}));
+  const w=WL[d];
+  if(w)s.push(sec('الدرس الأسبوعي',75,[w[0]=='b'?it('b',{bid:bidOf(w[1]),t:w[2]}):it('t',{t:w[1],pos:1})],{when:'بعد المغرب',core:d==2}));
+  if(d==0||d==4)s.push(sec('شرح منهج الباطنة',60,[it('t',{t:'شرح منهج الباطنة (العمل)',pos:1})],{tag:'int'}));
+  if(d==3||d==5)s.push(sec('تعلم مهارة',60,[it('t',{t:'المهارة الحالية',pos:1})],{tag:'skill'}));
+  s.push(sec('الرياضة',60,[it('t',{t:SP[d]})],{tag:'sport'}));
+  if(fri)s.push(sec('مراجعة الأسبوع وترتيب القادم',60,WR0.map(t=>it('t',{t})),{when:'بعد العصر'}));
+  s.push(sec('مراجعة المساء',30,[it('t',{t:'مراجعة سريعة لما درسته اليوم'})]));
+  out[d]=s}
+ return out}
+function seed(){
+ S={v:3,cur:mkSci(D_CUR),rd:mkSci(D_RD),matn:MATN0.map((n,i)=>({id:uid(),n,st:i<2?1:0})),mx:2,rmx:2,
+  lec:UNI0.flatMap(([n,l])=>l.map(x=>({id:uid(),n:x,done:0}))),
+  wo:WO0.map(([n,on,l])=>({id:uid(),n,on,items:l.map(x=>({id:uid(),n:x}))})),
+  mm:MM0.map(([n,pk,l])=>({id:uid(),n,pk,lines:l.map(x=>({id:uid(),t:x}))})),
+  wr:WR0.map(n=>({id:uid(),n})),ev:EV0.map(n=>({id:uid(),n})),dis:DIS0.map(n=>({id:uid(),n})),
+  done:{},pos:{},asg:{},g:{},e:{},wp:{},dc:{},focus:{},a:weekNum(wStart(today)),exam:0,ui:{}};
+ S.pos['mt'+S.matn[0].id]='';S.days=defDays();fillMatn();fillRd();return S}
+function migrate(){let old=null;try{old=JSON.parse(localStorage.getItem('maarij')||'null')}catch(e){}
+ if(!old)return;const nm=n=>String(n).replace(/\s*\((مع الشيخ[^)]*)\)/,'').trim();
+ const all=allB('cur').concat(allB('rd'));
+ Object.keys(old.c||{}).forEach(k=>{const b=all.find(x=>x.n==nm(k));if(b&&old.c[k]!=null)b.st=old.c[k]});
+ Object.keys(old.p||{}).forEach(k=>{const b=all.find(x=>x.n==nm(k));if(b&&old.p[k])b.pos=old.p[k]});
+ const lec=S.lec;Object.keys(old.u||{}).forEach(k=>{const l=lec.find(x=>x.n==k);if(l&&old.u[k])l.done=1});
+ if(old.e)S.e=old.e}
+function load(){let raw=null;try{raw=localStorage.getItem(KEY)}catch(e){}
+ if(raw){try{S=JSON.parse(raw)}catch(e){S=null}}
+ if(!S||!S.cur||!S.days){seed();migrate();save()}
+ if(S.uni&&!S.lec){S.lec=S.uni.flatMap(w=>w.items);delete S.uni}S.lec=S.lec||[];
+ ['done','pos','asg','g','e','wp','dc','focus','ui','qt'].forEach(k=>S[k]=S[k]||{});S.mx=S.mx||2;S.rmx=S.rmx||2}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function reindex(){IDX={};['cur','rd'].forEach(k=>S[k].forEach(s=>s.stages.forEach(st=>st.books.forEach(b=>IDX[b.id]={b,s,st,k}))))}
+const lecs=()=>S.lec;
+function uniFor(key,past){const L=lecs(),dn=L.filter(l=>l.done&&l.dd==key).map(l=>({l,done:1})),nx=L.find(l=>!l.done);return past?dn:dn.concat(nx?[{l:nx,done:0}]:[])}
+const lec=id=>lecs().find(x=>x.id==id);
+function loc(id){let r=null;(function w(o){if(r||!o||typeof o!='object')return;if(Array.isArray(o)){const i=o.findIndex(x=>x&&typeof x=='object'&&x.id===id);if(i>=0){r=[o,i];return}o.forEach(w)}else for(const k in o)w(o[k])})(S);return r}
+function fillMatn(){let a=S.matn.filter(m=>m.st==1).length;for(const m of S.matn){if(a>=S.mx)break;if(m.st==0){m.st=1;a++}}}
+function fillRd(){let a=allB('rd').filter(b=>b.st==1).length;for(const b of allB('rd')){if(a>=S.rmx)break;if(b.st==0){b.st=1;a++}}}
+
+/* ============ المنهج: فنّان كل أسبوع ============ */
+function curBook(s){for(const st of s.stages){const un=st.books.filter(b=>b.st!=2);if(!un.length)continue;const c=un.filter(b=>!b.ex);if(!c.length)return null;return{b:c.find(b=>b.st==1)||c[0],st}}return null}
+function waiting(s){return s.stages.some(st=>st.books.some(b=>b.st!=2))&&!curBook(s)}
+function pairs(){const act=S.cur.filter(s=>!s.off&&curBook(s)),P=[];for(let i=0;i<act.length;i+=2){const b=act[i+1]||(act.length>1?act[0]:null);P.push([act[i],b])}return P}
+function pairFor(ws){const f=S.focus[dk(ws)];if(f)return f.map(id=>S.cur.find(s=>s.id==id)||null);const P=pairs();if(!P.length)return[null,null];const w=weekNum(ws)-S.a;return P[((w%P.length)+P.length)%P.length]}
+function rdPick(item,d){const act=allB('rd').filter(b=>b.st==1);if(act.length)return act[(dayNum(d)+(item.off||0))%act.length];return allB('rd').find(b=>b.st!=2)||null}
+function syncSt(b){allB('cur').concat(allB('rd')).forEach(x=>{if(x!==b&&x.n==b.n){x.st=b.st;if(b.pos)x.pos=b.pos}})}
+function nextOf(id){const o=IDX[id];if(!o)return null;const flat=o.s.stages.flatMap(st=>st.books),i=flat.findIndex(b=>b.id==id);return flat.slice(i+1).concat(flat.slice(0,i)).find(b=>b.st!=2)||null}
+
+/* ============ أدوات الواجهة ============ */
+let tt=null;
+function toast(msg,undo){const t=$('#toast');t.innerHTML='<div><span>'+esc(msg)+'</span>'+(undo?'<button data-a="undo">تراجع</button>':'')+'</div>';window.__undo=undo;clearTimeout(tt);tt=setTimeout(()=>t.innerHTML='',6000)}
+function mut(fn,msg){const snap=JSON.stringify(S);fn();save();render();if(msg)toast(msg,()=>{S=JSON.parse(snap);save();render()})}
+function ask(title,fields,ok,okLabel){const d=$('#dlg');
+ d.innerHTML='<form method="dialog" id="dform"><h3>'+esc(title)+'</h3>'+fields.map(f=>{
+  if(f.msg)return'<p class="mut">'+esc(f.msg)+'</p>';
+  const id='f_'+f.k;let c='';
+  if(f.type=='select')c='<select id="'+id+'" name="'+f.k+'">'+f.opts.map(([v,l])=>'<option value="'+esc(v)+'"'+(v==f.val?' selected':'')+'>'+esc(l)+'</option>').join('')+'</select>';
+  else if(f.type=='checks')c='<div class="chs">'+f.opts.map(([v,l])=>'<label><input type="checkbox" name="'+f.k+'" value="'+esc(v)+'"'+((f.val||[]).includes(v)?' checked':'')+'>'+esc(l)+'</label>').join('')+'</div>';
+  else c='<input id="'+id+'" name="'+f.k+'" dir="auto" type="'+(f.type||'text')+'" value="'+esc(f.val==null?'':f.val)+'" placeholder="'+esc(f.ph||'')+'" autocomplete="off">';
+  return'<div class="fld"><span>'+esc(f.label||'')+'</span>'+c+'</div>'}).join('')+
+  '<div class="dbtn"><button value="ok" class="btn pri">'+(okLabel||'حفظ')+'</button><button value="x" class="btn" formnovalidate>إلغاء</button></div></form>';
+ d.returnValue='';d.onclose=()=>{if(d.returnValue!='ok')return;const f=document.forms.dform,v={};
+  fields.forEach(x=>{if(!x.k)return;if(x.type=='checks')v[x.k]=[...f.querySelectorAll('input[name="'+x.k+'"]:checked')].map(i=>i.value);else v[x.k]=f.elements[x.k].value});ok(v)};
+ d.showModal();const first=d.querySelector('input[type=text],input[type=number]');if(first)first.focus()}
+const ctl=id=>'<span class="ctl"><button data-a="up" data-i="'+id+'" title="أعلى" aria-label="أعلى">↑</button><button data-a="dn" data-i="'+id+'" title="أسفل" aria-label="أسفل">↓</button><button class="x" data-a="del" data-i="'+id+'" title="حذف" aria-label="حذف">✕</button></span>';
+const edi=(id,f,v,ph)=>'<input class="ed" data-a="f" data-i="'+id+'" data-f="'+f+'" value="'+esc(v)+'" placeholder="'+esc(ph||'')+'">';
+const sciOpts=(sel,none)=>(none?'<option value="">'+none+'</option>':'')+S.cur.filter(s=>!s.off).map(s=>'<option value="'+s.id+'"'+(s.id==sel?' selected':'')+'>'+esc(s.n)+'</option>').join('');
+const quoteH=(k,def)=>EM?'<input class="ed" style="margin:4px 0 14px" data-a="qt" data-k="'+k+'" value="'+esc((S.qt&&S.qt[k])||def)+'" aria-label="العبارة">':'<div class="quote">'+esc((S.qt&&S.qt[k])||def)+'</div>';
+const quote=k=>quoteH(k,QT[k]);
+const head=(t,sub,tools)=>'<div class="top"><div><h1>'+t+'</h1><div class="sub">'+(sub||'')+'</div></div><div class="tools">'+(tools||'')+'</div></div>';
+
+/* ============ اليوم ============ */
+function itemHtml(it0,key,d,fut){
+ const ck=S.done[key+'|'+it0.id],kk=key+'|'+it0.id;let h='';
+ const cb=(k,c,extra)=>'<input type="checkbox" data-a="chk" data-k="'+k+'" '+(extra||'')+(c?' checked':'')+'>';
+ const edctl=ctl(it0.id);
+ const posIn=pk=>'<small><input class="pi" data-a="pos" data-k="'+pk+'" placeholder="أين وصلت؟" value="'+esc(S.pos[pk])+'"></small>';
+ const bookRow=(b,info,cfg,fin)=>{T++;if(ck)DN_++;
+  const o=IDX[b.id];const sub=o?esc(o.s.n)+(o.st?' · '+esc(o.st.n):''):'';
+  return'<div class="row'+(ck?' done':'')+'">'+cb(kk,ck,'data-b="'+b.id+'"')+'<span class="t"><span class="tt">'+esc(b.n)+'</span>'+(b.ex?'<span class="ex">مع الشيخ</span>':'')+(b.add?'<span class="tagx">مقترح</span>':'')+'<small>'+(info||sub)+'</small><small><input class="pi" data-a="bpos" data-i="'+b.id+'" placeholder="أين وصلت؟" value="'+esc(b.pos)+'"></small>'+(cfg||'')+'</span>'+
+  (fin?'<button class="fin" data-a="fin" data-b="'+b.id+'" data-i="'+(it0.k=='b'?it0.id:'')+'">انتهيت منه</button>':'')+edctl+'</div>'};
+ const note=(t,cfg)=>'<div class="row"><span class="t note">'+t+(cfg||'')+'</span>'+edctl+'</div>';
+ if(it0.k=='t'){T++;if(ck)DN_++;
+  h='<div class="row'+(ck?' done':'')+'">'+cb(kk,ck)+'<span class="t">'+(EM?edi(it0.id,'t',it0.t)+'<label class="sm mut"><input type="checkbox" data-a="f" data-i="'+it0.id+'" data-f="pos"'+(it0.pos?' checked':'')+'> خانة «أين وصلت»</label>':'<span class="tt">'+esc(it0.t)+'</span>'+(it0.pos?posIn(it0.pk||it0.id):''))+'</span>'+edctl+'</div>'}
+ else if(it0.k=='m'){const act=S.matn.filter(m=>m.st==1);
+  if(!act.length)h=note('لا يوجد متن جارٍ. أضف متنًا من تبويب الحفظ.');
+  else{let m=S.matn.find(x=>x.id==S.asg[kk]);if(!m){m=act[(dayNum(d)+(it0.off||0))%act.length];if(!fut)S.asg[kk]=m.id}
+   T++;if(ck)DN_++;
+   h='<div class="row'+(ck?' done':'')+'">'+cb(kk,ck,'data-m="'+m.id+'"')+'<span class="t"><span class="tt">المتن: '+esc(m.n)+'</span>'+posIn('mt'+m.id)+'</span><button class="fin" data-a="mfin" data-i="'+m.id+'">أتممت حفظه</button>'+edctl+'</div>'}}
+ else if(it0.k=='b'){const b=(IDX[it0.bid]||{}).b;
+  if(!b)h=note('اختر كتابًا لهذا البند','<select class="sel" data-a="f" data-i="'+it0.id+'" data-f="bid"><option value="">—</option>'+bookOpts('')+'</select>');
+  else{const cfg=EM?'<select class="sel" data-a="f" data-i="'+it0.id+'" data-f="bid">'+bookOpts(b.id)+'</select>':'';
+   if(b.st==2)h=note('✓ أتممت «'+esc(b.n)+'»','<button class="btn sm" data-a="adv" data-i="'+it0.id+'">الكتاب التالي</button>')+cfg;
+   else h=bookRow(b,(it0.t?esc(it0.t)+' · ':'')+(IDX[b.id]?esc(IDX[b.id].s.n):''),cfg,1)}}
+ else if(it0.k=='c'){const sc=pairFor(WKS)[it0.slot||0];
+  const cfg=EM?'<select class="sel" data-a="f" data-i="'+it0.id+'" data-f="slot" data-n="1"><option value="0"'+((it0.slot||0)==0?' selected':'')+'>الفن الأول للأسبوع</option><option value="1"'+(it0.slot==1?' selected':'')+'>الفن الثاني للأسبوع</option></select>':'';
+  if(!sc)h=note('لا يوجد فن مخصص لهذا الأسبوع',cfg);
+  else{const cb0=curBook(sc);
+   if(!cb0)h=note(esc(sc.n)+': '+(waiting(sc)?'عند الشيخ الآن':'أتممت كل كتبه'),cfg);
+   else{let b=IDX[S.asg[kk]]&&IDX[S.asg[kk]].b;if(!b||IDX[b.id].s.id!=sc.id){b=cb0.b;if(!fut)S.asg[kk]=b.id}
+    h=bookRow(b,'<b>'+esc(sc.n)+'</b> · '+esc(IDX[b.id].st.n),cfg,1)}}}
+ else if(it0.k=='r'){let b=IDX[S.asg[kk]]&&IDX[S.asg[kk]].b;if(!b){b=rdPick(it0,d);if(b&&!fut)S.asg[kk]=b.id}
+  if(!b)h=note('أتممت قائمة القراءة. أضف كتبًا جديدة من تبويب القراءة.');
+  else h=bookRow(b,esc(IDX[b.id].s.n),'',1)}
+ else if(it0.k=='u'){const li=uniFor(key,d<today);
+  if(!li.length)h=note(d<today?'لا محاضرات مسجلة لهذا اليوم.':'أنهيت كل المحاضرات. أضف محاضرة جديدة من تبويب الجامعة.');
+  else h=li.map((o,n)=>{T++;if(o.done)DN_++;return'<div class="row'+(o.done?' done':'')+'"><input type="checkbox" data-a="lec" data-i="'+o.l.id+'" data-d="'+key+'"'+(o.done?' checked':'')+'><span class="t en tt">'+esc(o.l.n)+'</span>'+(n==0?edctl:'')+'</div>'}).join('')}
+ else if(it0.k=='w'){const g=S.wo.filter(x=>x.on);
+  h=g.length?g.map(x=>'<div class="note" style="padding-bottom:0">'+esc(x.n)+'</div>'+x.items.map(w=>{const k2=key+'|w'+w.id,c=S.done[k2];T++;if(c)DN_++;
+   return'<div class="row'+(c?' done':'')+'">'+cb(k2,c)+'<span class="t tt">'+esc(w.n)+'</span></div>'}).join('')).join('')+(EM?'<div class="note">تعدّل بنود العبادات من تبويب العبادات.'+edctl+'</div>':''):note('لا توجد مرحلة عبادات مفعّلة. فعّل مرحلة من تبويب العبادات.')}
+ return h}
+const bookOpts=sel=>S.cur.map(s=>'<optgroup label="'+esc(s.n)+'">'+s.stages.flatMap(st=>st.books).map(b=>'<option value="'+b.id+'"'+(b.id==sel?' selected':'')+'>'+esc(b.n)+'</option>').join('')+'</optgroup>').join('');
+function dayStats(i){const d=dateOf(i),key=dk(d);let tot=0,dn=0;const tm={},tp={};
+ S.days[i].forEach(s=>{let st=0,sd=0;s.items.forEach(x=>{if(x.k=='w'){S.wo.filter(g=>g.on).forEach(g=>g.items.forEach(w=>{st++;if(S.done[key+'|w'+w.id])sd++}))}
+   else if(x.k=='m'&&!S.matn.some(m=>m.st==1)){}
+   else if(x.k=='u'){uniFor(key,d<today).forEach(o=>{st++;if(o.done)sd++})}
+   else{st++;if(S.done[key+'|'+x.id])sd++}});
+  if(S.exam&&!s.core)return;tot+=st;dn+=sd;if(s.tag&&st){tm[s.tag]=(tm[s.tag]||0)+(+s.min||0)*sd/st;tp[s.tag]=(tp[s.tag]||0)+(+s.min||0)}});
+ return{tot,dn,tm,tp}}
+const MSG=p=>p==0?'ابدأ بأول كتلة، والباقي يتبعها بإذن الله.':p<.5?'بداية طيبة. استمر بهدوء.':p<1?'أنت في النصف الثاني. قليل ويكتمل يومك.':'أتممت يومك. تقبل الله منك وبارك في علمك.';
+function renderDay(){
+ const d=dateOf(SEL),key=dk(d),fut=d>today,pr=pairFor(WKS);T=0;DN_=0;
+ const secs=S.days[SEL].filter(s=>!S.exam||s.core||EM);
+ let body=secs.map((s,si)=>{const real=S.days[SEL].indexOf(s);
+  const its=s.items.map(x=>itemHtml(x,key,d,fut)).join('');
+  const hid=S.exam&&!s.core;
+  const eb='<div class="edbar">'+edi(s.id,'t',s.t,'اسم القسم')+'<label>دقائق <input type="number" min="0" step="5" data-a="f" data-i="'+s.id+'" data-f="min" data-n="1" value="'+(+s.min||0)+'"></label><label>الوقت '+'<input data-a="f" data-i="'+s.id+'" data-f="when" value="'+esc(s.when)+'" style="width:110px"></label>'+
+   '<label>يُحسب في <select data-a="f" data-i="'+s.id+'" data-f="tag"><option value="">—</option>'+Object.keys(TAGS).map(k=>'<option value="'+k+'"'+(s.tag==k?' selected':'')+'>'+TAGS[k]+'</option>').join('')+'</select></label>'+
+   '<label><input type="checkbox" data-a="f" data-i="'+s.id+'" data-f="core"'+(s.core?' checked':'')+'> يبقى في وضع الامتحان</label>'+
+   ctl(s.id)+'<button class="btn sm" data-a="cpsec" data-i="'+s.id+'">نسخ إلى أيام</button><button class="btn sm" data-a="addit" data-i="'+s.id+'">+ بند</button></div>';
+  let extra='';if(s.items.some(x=>x.k=='c'))extra='<div class="focus sm">تركيز هذا الأسبوع: <b>'+esc(pr[0]?pr[0].n:'—')+'</b>'+(pr[1]?' و<b>'+esc(pr[1].n)+'</b>':'')+'<button class="btn sm" data-a="tab" data-k="cur" style="margin-inline-start:10px">تغيير</button></div>';
+  return'<div class="sec'+(hid?' mut':'')+'"><div class="sh"><h2>'+esc(s.t)+'</h2>'+(s.min?'<span class="pill">'+num(s.min)+' د</span>':'')+(s.when?'<span class="when">'+esc(s.when)+'</span>':'')+(s.tag?'<span class="pill g">'+TAGS[s.tag]+'</span>':'')+(hid?'<span class="pill g">خارج وضع الامتحان</span>':'')+'</div>'+eb+extra+its+(s.id&&EM&&!its?'<div class="note">لا توجد بنود.</div>':'')+'</div>'}).join('');
+ const pc=T?DN_/T:0;
+ const strip=DN.map((n,i)=>{const st=dayStats(i),dd=dateOf(i);return'<button data-a="day" data-i="'+i+'" class="'+(i==SEL?'on ':'')+(+dd==+today?'now':'')+'"><b>'+n+'</b><small>'+fmt(dd,{day:'numeric'})+'</small><i><u style="width:'+(st.tot?Math.round(st.dn/st.tot*100):0)+'%"></u></i></button>'}).join('');
+ const wp=S.wp[dk(WKS)],goals=wp&&wp.goals&&wp.goals.filter(Boolean);
+ $('#t-day').innerHTML=head('اليوم · '+DN[SEL],fmt(d,{day:'numeric',month:'long',year:'numeric'}),
+   '<button class="btn sm" data-a="wnav" data-v="-1">‹ الأسبوع السابق</button><button class="btn sm" data-a="wnav" data-v="0">هذا الأسبوع</button><button class="btn sm" data-a="wnav" data-v="1">الأسبوع التالي ›</button><button class="sw'+(S.exam?' on':'')+'" data-a="exam" aria-pressed="'+(S.exam?'true':'false')+'">وضع الامتحان</button>')+
+  quoteH('day',DQ[d.getDate()%DQ.length])+
+  (S.exam?'<div class="note">وضع الامتحان: العبادات والحفظ ودرس التفسير ومذاكرة الجامعة فقط.</div>':'')+
+  '<div class="strip">'+strip+'</div>'+
+  (goals&&goals.length?'<div class="note"><b>أهداف الأسبوع:</b> '+goals.map(esc).join(' · ')+'</div>':'')+
+  '<div class="kv"><span><b>'+num(DN_)+' من '+num(T)+'</b> <span class="mut sm">· '+MSG(pc)+'</span></span></div><div class="bar"><i style="width:'+Math.round(pc*100)+'%"></i></div>'+
+  '<input class="ed" style="margin:10px 0 6px" data-a="goal" placeholder="هدفي اليوم في جملة واحدة" value="'+esc(S.g[key])+'">'+
+  body+
+  '<div class="edbar" style="margin-top:14px"><button class="btn" data-a="addsec">+ قسم جديد</button><button class="btn" data-a="resetday">استعادة الجدول الافتراضي لهذا اليوم</button></div>'+
+  '<p class="note noem">الجدول قالب أسبوعي: ما تعدّله في يوم يتكرر في نفس اليوم كل أسبوع. استخدم «تعديل» للإضافة والحذف.</p>';
+ save()}
+
+/* ============ قوائم المنهج والقراءة ============ */
+const GN={bag:'الحقائب',alat:'علوم الآلة',gaya:'علوم الغاية',add:'إضافات مقترحة'};
+function renderCat(k){const list=S[k],isC=k=='cur';let n=0,dd=0,last='';
+ const body=list.map(s=>{const names=s.stages.flatMap(st=>st.books),fin=names.filter(b=>b.st==2).length;
+  const gh=s.grp!=last?'<div class="grp">'+(isC?GN[s.grp]:(s.grp=='bag'?'من معارج العلوم':'إضافات مقترحة'))+'</div>':'';last=s.grp;
+  const cbk=isC&&!s.off?curBook(s):null;
+  return gh+'<details'+(S.ui[s.id]?' open':'')+' data-id="'+s.id+'"><summary>'+(EM?'':'')+'<span class="nm">'+(EM?edi(s.id,'n',s.n):esc(s.n))+'</span>'+(isC&&s.off?'<span class="pill g">خارج الجدول</span>':'')+(isC&&waiting(s)?'<span class="pill g">عند الشيخ</span>':'')+'<span class="pill">'+num(fin)+'/'+num(names.length)+'</span>'+ctl(s.id)+'</summary>'+
+  (EM?'<div class="edbar">'+(isC?'<label><input type="checkbox" data-a="f" data-i="'+s.id+'" data-f="off"'+(s.off?' checked':'')+'> خارج الجدول التلقائي</label><label>المجموعة <select data-a="f" data-i="'+s.id+'" data-f="grp">'+Object.keys(GN).filter(g=>g!='add').map(g=>'<option value="'+g+'"'+(s.grp==g?' selected':'')+'>'+GN[g]+'</option>').join('')+'</select></label>':'')+'<button class="btn sm" data-a="addstage" data-i="'+s.id+'">+ مرحلة</button></div>':'')+
+  (cbk?'<div class="note">التالي في الجدول: <b>'+esc(cbk.b.n)+'</b></div>':'')+
+  s.stages.map(st=>'<div class="stg">'+(EM?edi(st.id,'n',st.n):esc(st.n))+ctl(st.id)+(EM?'<button class="btn sm" data-a="addbook" data-i="'+st.id+'">+ كتاب</button>':'')+'</div>'+
+   st.books.map(b=>{n++;dd+=b.st==2?1:b.st==1?.4:0;
+    return'<div class="row'+(b.st==2?' done':'')+'"><span class="t">'+(EM?edi(b.id,'n',b.n)+'<label class="sm mut"><input type="checkbox" data-a="f" data-i="'+b.id+'" data-f="ex"'+(b.ex?' checked':'')+'> مع الشيخ أو درس أسبوعي (خارج الجدول)</label>':'<span class="tt">'+esc(b.n)+'</span>'+(b.ex?'<span class="ex">مع الشيخ</span>':'')+(b.add?'<span class="tagx">مقترح</span>':''))+
+    (b.pos&&!EM?'<small>وصلت إلى: '+esc(b.pos)+'</small>':'')+'</span><select class="sel" data-a="f" data-i="'+b.id+'" data-f="st" data-n="1" aria-label="الحالة"><option value="0"'+(b.st==0?' selected':'')+'>لم يبدأ</option><option value="1"'+(b.st==1?' selected':'')+'>جارٍ</option><option value="2"'+(b.st==2?' selected':'')+'>انتهى</option></select>'+ctl(b.id)+'</div>'}).join('')).join('')+'</details>'}).join('');
+ const p=n?Math.round(dd/n*100):0;
+ let top;
+ if(isC){const pr=pairFor(WKS),nx=pairFor(new Date(WKS.getTime()+7*864e5+3600e3));
+  top=head('المنهج','معارج العلوم: حقائب ثم مراحل',(EM?'':'<span class="pill">'+num(p)+'٪ إنجاز</span>'))+quote('cur')+
+  '<div class="focus"><div><b>تركيز هذا الأسبوع:</b> '+esc(pr[0]?pr[0].n:'—')+(pr[1]?' و'+esc(pr[1].n):'')+'</div><div class="sm mut">الأسبوع القادم: '+esc(nx[0]?nx[0].n:'—')+(nx[1]?' و'+esc(nx[1].n):'')+'</div>'+
+  '<div class="sm mut" style="margin-top:4px">في كل فن تُنهي كتب مرحلته الأولى ثم تنتقل إلى التي تليها. الكتب مع الشيخ والدروس الأسبوعية خارج هذا الجدول.</div><div class="edbar" style="display:flex"><label>الفن الأول <select class="sel" data-a="fcs" data-w="this" data-i="0">'+sciOpts(pr[0]&&pr[0].id)+'</select></label><label>الفن الثاني <select class="sel" data-a="fcs" data-w="this" data-i="1">'+sciOpts(pr[1]&&pr[1].id)+'</select></label>'+(S.focus[dk(WKS)]?'<button class="btn sm" data-a="fcauto" data-w="this">عودة للترتيب التلقائي</button>':'<span class="sm mut">الترتيب تلقائي</span>')+'<button class="btn sm" data-a="anchor">ابدأ الدورة من هذا الأسبوع</button></div></div>'
+  +'<div class="bar"><i style="width:'+p+'%"></i></div>'}
+ else{const act=allB('rd').filter(b=>b.st==1);
+  top=head('القراءة','حقيبتا معارج العلوم أولًا، ثم إضافات مقترحة',(EM?'':'<span class="pill">'+num(p)+'٪ إنجاز</span>'))+quote('rd')+
+  '<div class="focus"><div><b>الجاري الآن:</b> '+(act.length?act.map(b=>esc(b.n)).join(' · '):'لا شيء')+'</div><div class="sm mut">تبقى الكتب الجارية معًا بالعدد الذي تختاره، وعند إنهاء أحدها يبدأ التالي تلقائيًا.</div>'+
+  '<div class="edbar" style="display:flex"><label>عدد الكتب الجارية معًا <select data-a="rmx" data-n="1">'+[1,2,3].map(v=>'<option value="'+v+'"'+(S.rmx==v?' selected':'')+'>'+num(v)+'</option>').join('')+'</select></label></div></div><div class="bar"><i style="width:'+p+'%"></i></div>'}
+ $('#t-'+k).innerHTML=top+body+'<div class="edbar" style="margin-top:12px"><button class="btn" data-a="addsci" data-k="'+k+'">+ '+(isC?'علم أو حقيبة':'قائمة')+'</button></div>'}
+
+/* ============ الحفظ ============ */
+function renderMem(){
+ const g=S.mm.map(m=>'<div class="box"><div class="sh" style="margin-top:8px"><h3 style="flex:1">'+(EM?edi(m.id,'n',m.n):esc(m.n))+'</h3>'+ctl(m.id)+'</div>'+
+  '<div class="row"><span class="t"><small>أين وصلت؟</small><input class="pi" style="margin-top:0" data-a="pos" data-k="'+m.pk+'" value="'+esc(S.pos[m.pk])+'" placeholder="مثال: النحل، الآية ٤٠"></span></div>'+
+  m.lines.map(l=>'<div class="row"><span class="t">'+(EM?edi(l.id,'t',l.t):esc(l.t))+'</span>'+ctl(l.id)+'</div>').join('')+
+  '<div class="edbar"><button class="btn sm" data-a="addline" data-i="'+m.id+'">+ سطر</button></div></div>').join('');
+ const mt=S.matn.map(m=>'<div class="row'+(m.st==2?' done':'')+'"><span class="t">'+(EM?edi(m.id,'n',m.n):'<span class="tt">'+esc(m.n)+'</span>')+(m.st==1&&!EM?'<small><input class="pi" data-a="pos" data-k="mt'+m.id+'" placeholder="أين وصلت؟" value="'+esc(S.pos['mt'+m.id])+'"></small>':'')+'</span><select class="sel" data-a="f" data-i="'+m.id+'" data-f="st" data-n="1"><option value="0"'+(m.st==0?' selected':'')+'>في الانتظار</option><option value="1"'+(m.st==1?' selected':'')+'>جارٍ</option><option value="2"'+(m.st==2?' selected':'')+'>محفوظ</option></select>'+ctl(m.id)+'</div>').join('');
+ $('#t-mem').innerHTML=head('الحفظ','قرآن وحديث ومتون')+quote('mem')+g+
+  '<div class="edbar"><button class="btn" data-a="addgrp">+ قسم حفظ</button></div>'+
+  '<div class="box"><div class="sh" style="margin-top:8px"><h3 style="flex:1">المتون</h3><label class="sm mut">الجارية معًا <select data-a="mx" data-n="1">'+[1,2,3,4].map(v=>'<option value="'+v+'"'+(S.mx==v?' selected':'')+'>'+num(v)+'</option>').join('')+'</select></label></div>'+
+  '<div class="note">المتون الجارية تتناوب كل يوم، وعند إتمام متن يبدأ التالي تلقائيًا.</div>'+mt+'<div class="edbar"><button class="btn sm" data-a="addmatn">+ متن</button></div></div>'}
+
+/* ============ العبادات ============ */
+function streak(g){let n=0;const d=new Date(today),all=x=>g.items.length&&g.items.every(w=>S.done[dk(x)+'|w'+w.id]);if(!all(d))d.setDate(d.getDate()-1);while(all(d)&&n<365){n++;d.setDate(d.getDate()-1)}return n}
+function renderIb(){
+ $('#t-ib').innerHTML=head('العبادات','ثبّت الأهم ثم زِد')+quote('ib')+'<div class="note">لا تنتقل للمرحلة التالية حتى تثبت التي قبلها ١٤ يومًا متتالية.</div>'+
+  S.wo.map((g,i)=>{const s=streak(g),nx=S.wo[i+1];
+   return'<div class="box"><div class="sh" style="margin-top:8px"><h3 style="flex:1">'+(EM?edi(g.id,'n',g.n):esc(g.n))+'</h3><label class="sm mut"><input type="checkbox" data-a="f" data-i="'+g.id+'" data-f="on"'+(g.on?' checked':'')+'> تظهر في جدول اليوم</label>'+ctl(g.id)+'</div>'+
+   (g.on?'<div class="note">الثبات: '+num(Math.min(s,14))+' من ١٤ يومًا'+(s>=14&&nx&&!nx.on?' <button class="btn sm" data-a="unlock" data-i="'+nx.id+'">فعّل المرحلة التالية</button>':'')+'</div><div class="bar"><i style="width:'+Math.min(100,s/14*100)+'%"></i></div>':'')+
+   g.items.map(w=>'<div class="row"><span class="t">'+(EM?edi(w.id,'n',w.n):esc(w.n))+'</span>'+ctl(w.id)+'</div>').join('')+'<div class="edbar"><button class="btn sm" data-a="addwi" data-i="'+g.id+'">+ بند</button></div></div>'}).join('')+
+  '<div class="edbar"><button class="btn" data-a="addwo">+ مرحلة عبادات</button></div>'}
+
+/* ============ الجامعة ============ */
+function renderUni(){const L=lecs(),d=L.filter(x=>x.done).length,nx=L.find(x=>!x.done);
+ $('#t-uni').innerHTML=head('الجامعة','Surgery II · المحاضرات النظرية','<span class="pill">'+num(d)+' من '+num(L.length)+'</span><button class="btn pri sm" data-a="addlec">+ محاضرة</button>')+quote('uni')+
+  '<div class="bar"><i style="width:'+(L.length?d/L.length*100:0)+'%"></i></div>'+(nx?'<div class="note">التالية: <span class="en" style="display:inline">'+esc(nx.n)+'</span></div>':'<div class="note">أنهيت كل المحاضرات.</div>')+
+  L.map(x=>'<div class="row'+(x.done?' done':'')+'"><input type="checkbox" data-a="lec" data-i="'+x.id+'"'+(x.done?' checked':'')+'><span class="t">'+(EM?'<input class="ed en" data-a="f" data-i="'+x.id+'" data-f="n" value="'+esc(x.n)+'">':'<span class="en tt">'+esc(x.n)+'</span>')+'</span>'+ctl(x.id)+'</div>').join('')+
+  '<p class="note">تظهر المحاضرة التالية تلقائيًا في جدول اليوم بعد إنهاء السابقة. من «تعديل» يمكنك تغيير الترتيب.</p>'}
+
+/* ============ الأسبوع ============ */
+function renderWk(){const key=dk(WKS),e=S.e[key]=S.e[key]||{r:{},n:''};let sum=0,c=0;S.ev.forEach(x=>{if(e.r[x.id]){sum+=e.r[x.id];c++}});
+ const tm={},tp={};let tot=0,dn=0;for(let i=0;i<7;i++){const s=dayStats(i);tot+=s.tot;dn+=s.dn;Object.keys(s.tm).forEach(k=>tm[k]=(tm[k]||0)+s.tm[k]);Object.keys(s.tp).forEach(k=>tp[k]=(tp[k]||0)+s.tp[k])}
+ const hr=m=>num((Math.round(m/6)/10))+' س';
+ const nw=new Date(WKS);nw.setDate(nw.getDate()+7);const nk=dk(nw),np=S.wp[nk]=S.wp[nk]||{goals:['','',''],n:''};const pn=pairFor(nw);
+ const wchk=id=>!!S.done['wk|'+key+'|'+id];
+ $('#t-wk').innerHTML=head('الأسبوع','أسبوع يبدأ '+fmt(WKS,{day:'numeric',month:'long'}),'<button class="btn sm" data-a="wnav" data-v="-1">‹ السابق</button><button class="btn sm" data-a="wnav" data-v="0">هذا الأسبوع</button><button class="btn sm" data-a="wnav" data-v="1">التالي ›</button>')+quote('wk')+
+  '<div class="hrs"><div><span class="mut sm">إنجاز المهام</span><b>'+num(tot?Math.round(dn/tot*100):0)+'٪</b></div>'+Object.keys(TAGS).map(k=>'<div><span class="mut sm">'+TAGS[k]+'</span><b>'+hr(tm[k]||0)+' / '+hr(tp[k]||0)+'</b></div>').join('')+'</div>'+
+  '<div class="box"><h3>خطوات المراجعة</h3>'+S.wr.map(x=>'<div class="row'+(wchk(x.id)?' done':'')+'"><input type="checkbox" data-a="wchk" data-k="wk|'+key+'|'+x.id+'"'+(wchk(x.id)?' checked':'')+'><span class="t">'+(EM?edi(x.id,'n',x.n):'<span class="tt">'+esc(x.n)+'</span>')+'</span>'+ctl(x.id)+'</div>').join('')+'<div class="edbar"><button class="btn sm" data-a="addwr">+ خطوة</button></div></div>'+
+  '<div class="box"><h3>تقييم الأسبوع</h3>'+S.ev.map(x=>'<div class="sc"><span>'+(EM?edi(x.id,'n',x.n):esc(x.n))+'</span><span class="n">'+[1,2,3,4,5].map(v=>'<label><input type="radio" name="r'+x.id+'" data-a="eval" data-i="'+x.id+'" data-v="'+v+'"'+(e.r[x.id]==v?' checked':'')+'>'+num(v)+'</label>').join('')+'</span>'+ctl(x.id)+'</div>').join('')+
+  '<div class="edbar"><button class="btn sm" data-a="addev">+ معيار</button></div><p>المجموع: <b>'+num(sum)+'</b> من '+num(S.ev.length*5)+'</p><div class="sm mut">ما الذي أنجزته؟ وما الذي عطّلني؟</div><textarea id="evn" data-a="evn" aria-label="ملاحظات الأسبوع">'+esc(e.n)+'</textarea></div>'+
+  '<div class="box"><h3>ترتيب الأسبوع القادم · '+esc(fmt(nw,{day:'numeric',month:'long'}))+'</h3>'+[0,1,2].map(i=>'<input class="ed" style="margin:5px 0" data-a="wgoal" data-i="'+i+'" placeholder="هدف '+num(i+1)+'" value="'+esc(np.goals[i])+'">').join('')+
+  '<div class="kv"><span class="sm">فنّا المنهج: <b>'+esc(pn[0]?pn[0].n:'—')+'</b>'+(pn[1]?' و<b>'+esc(pn[1].n)+'</b>':'')+'</span></div>'+
+  '<div class="edbar" style="display:flex"><label>الأول <select class="sel" data-a="fcs" data-w="next" data-i="0">'+sciOpts(pn[0]&&pn[0].id)+'</select></label><label>الثاني <select class="sel" data-a="fcs" data-w="next" data-i="1">'+sciOpts(pn[1]&&pn[1].id)+'</select></label>'+(S.focus[nk]?'<button class="btn sm" data-a="fcauto" data-w="next">عودة للتلقائي</button>':'')+'</div></div>'+
+  '<div class="box"><h3>الابتعاد عن المشتتات</h3>'+S.dis.map(x=>'<div class="row"><input type="checkbox" data-a="dchk" data-i="'+x.id+'"'+(S.dc[x.id]?' checked':'')+'><span class="t">'+(EM?edi(x.id,'n',x.n):esc(x.n))+'</span>'+ctl(x.id)+'</div>').join('')+'<div class="edbar"><button class="btn sm" data-a="adddis">+ بند</button></div></div>'+
+  '<details data-id="data"><summary><span class="nm">نسخة احتياطية</span></summary><p class="note">انسخ النص واحفظه، أو الصق نسخة سابقة ثم اضغط استيراد.</p><textarea id="bk" aria-label="نسخة البيانات"></textarea><div class="tools" style="margin-top:8px"><button class="btn" data-a="exp">نسخ البيانات</button><button class="btn" data-a="imp">استيراد</button><button class="btn" data-a="reset">إعادة الضبط</button></div></details>'}
+
+/* ============ العرض ============ */
+function render(){reindex();$('#app').classList.toggle('em',EM);
+ $('#nav').innerHTML='<div class="brand">معارجي</div>'+TABS.map(([k,t,e])=>'<button data-a="tab" data-k="'+k+'" class="'+(k==TAB?'on':'')+'"><span class="emo">'+e+'</span>'+t+'</button>').join('');
+ renderDay();renderCat('cur');renderCat('rd');renderMem();renderIb();renderUni();renderWk();
+ document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id=='t-'+TAB));
+ const f=$('#fab');f.classList.toggle('on',EM);f.textContent=EM?'✓ تم':'✎ تعديل';f.setAttribute('aria-pressed',EM)}
+function show(k){TAB=k;try{history.replaceState(null,'','#'+k)}catch(e){}render();window.scrollTo(0,0)}
+
+/* ============ الأحداث ============ */
+const A={
+ tab:el=>show(el.dataset.k),
+ day:el=>{SEL=+el.dataset.i;render()},
+ wnav:el=>{const v=+el.dataset.v;if(v==0){WKS=wStart(today);SEL=dIdx(today)}else{WKS=new Date(WKS);WKS.setDate(WKS.getDate()+7*v)}render()},
+ em:()=>{EM=!EM;render()},
+ exam:()=>{S.exam=S.exam?0:1;save();render()},
+ undo:()=>{if(window.__undo)window.__undo();$('#toast').innerHTML=''},
+ up:el=>mv(el.dataset.i,-1),dn:el=>mv(el.dataset.i,1),
+ del:el=>{const l=loc(el.dataset.i);if(!l)return;const nm=(l[0][l[1]].n||l[0][l[1]].t||'البند');mut(()=>l[0].splice(l[1],1),'حُذف: '+nm)},
+ fin:el=>{const o=IDX[el.dataset.b];if(!o)return;mut(()=>{o.b.st=2;syncSt(o.b);if(o.k=='rd')fillRd();if(el.dataset.i)advance(el.dataset.i)},'أحسنت! أتممت «'+o.b.n+'»')},
+ adv:el=>mut(()=>advance(el.dataset.i)),
+ mfin:el=>mut(()=>{const m=S.matn.find(x=>x.id==el.dataset.i);if(m){m.st=2;fillMatn()}},'تم حفظ المتن. بدأ التالي تلقائيًا.'),
+ unlock:el=>mut(()=>{const g=S.wo.find(x=>x.id==el.dataset.i);if(g)g.on=1},'فُعّلت المرحلة التالية'),
+ anchor:()=>mut(()=>{S.a=weekNum(WKS)},'بدأت الدورة من هذا الأسبوع'),
+ fcauto:el=>{delete S.focus[dk(wkOf(el))];save();render()},
+ resetday:()=>ask('استعادة جدول '+DN[SEL],[{msg:'سيُستبدل جدول هذا اليوم بالجدول الافتراضي. يمكنك التراجع بعدها.'}],()=>mut(()=>{S.days[SEL]=defDays()[SEL]},'استُعيد الجدول'),'استعادة'),
+ addsec:()=>ask('قسم جديد',[{k:'t',label:'الاسم',ph:'مثال: مراجعة اللغة'},{k:'min',label:'الدقائق',type:'number',val:30},{k:'when',label:'الوقت (اختياري)'},{k:'first',label:'أول بند (اختياري)'},{k:'days',label:'الأيام',type:'checks',opts:DN.map((n,i)=>[String(i),n]),val:[String(SEL)]}],v=>{if(!v.t.trim())return;mut(()=>{(v.days.length?v.days:[String(SEL)]).forEach(d=>S.days[d].splice(Math.max(0,S.days[d].length-1),0,sec(v.t.trim(),+v.min||0,v.first.trim()?[it('t',{t:v.first.trim()})]:[],{when:v.when})))},'أُضيف القسم')},'إضافة'),
+ cpsec:el=>{const l=loc(el.dataset.i);if(!l)return;const s0=l[0][l[1]];ask('نسخ «'+s0.t+'» إلى',[{k:'days',type:'checks',label:'الأيام',opts:DN.map((n,i)=>[String(i),n]).filter(x=>+x[0]!=SEL),val:[]}],v=>mut(()=>{v.days.forEach(d=>{const c=JSON.parse(JSON.stringify(s0));c.id=uid();c.items.forEach(x=>{if(x.k=='t'&&x.pos&&!x.pk)x.pk=x.id;x.id=uid()});S.days[d].push(c)})},'نُسخ القسم'),'نسخ')},
+ addit:el=>ask('بند جديد',[{k:'k',label:'النوع',type:'select',val:'t',opts:[['t','مهمة نصية'],['m','المتن الجاري (تلقائي)'],['b','كتاب محدد'],['c','المنهج المكتوب (فنّا الأسبوع)'],['r','القراءة (تلقائي)'],['u','محاضرة الجامعة (تلقائي)'],['w','العبادات']]},{k:'t',label:'النص (للمهمة النصية)'}],v=>mut(()=>{const l=loc(el.dataset.i);if(!l)return;const s0=l[0][l[1]];s0.items.push(it(v.k,v.k=='t'?{t:v.t.trim()||'مهمة جديدة'}:v.k=='c'?{slot:0}:v.k=='b'?{bid:''}:{}))},'أُضيف البند'),'إضافة'),
+ addsci:el=>{const k=el.dataset.k;ask('إضافة',[{k:'n',label:'الاسم'}].concat(k=='cur'?[{k:'grp',label:'المجموعة',type:'select',val:'gaya',opts:[['bag','الحقائب'],['alat','علوم الآلة'],['gaya','علوم الغاية']]}]:[]),v=>{if(!v.n.trim())return;mut(()=>S[k].push({id:uid(),grp:k=='cur'?v.grp:'add',n:v.n.trim(),off:0,stages:[{id:uid(),n:'المرحلة ١',books:[]}]}),'أُضيف')},'إضافة')},
+ addstage:el=>ask('مرحلة جديدة',[{k:'n',label:'الاسم',val:'مرحلة جديدة'}],v=>mut(()=>{const l=loc(el.dataset.i);if(l)l[0][l[1]].stages.push({id:uid(),n:v.n.trim()||'مرحلة',books:[]})}),'إضافة'),
+ addbook:el=>ask('كتاب جديد',[{k:'n',label:'اسم الكتاب'}],v=>{if(!v.n.trim())return;mut(()=>{const l=loc(el.dataset.i);if(l)l[0][l[1]].books.push({id:uid(),n:v.n.trim(),st:0,pos:'',ex:0,add:0})})},'إضافة'),
+ addmatn:()=>ask('متن جديد',[{k:'n',label:'اسم المتن'}],v=>{if(v.n.trim())mut(()=>{S.matn.push({id:uid(),n:v.n.trim(),st:0});fillMatn()})},'إضافة'),
+ addline:el=>ask('سطر جديد',[{k:'t',label:'النص'}],v=>{if(v.t.trim())mut(()=>{const l=loc(el.dataset.i);if(l)l[0][l[1]].lines.push({id:uid(),t:v.t.trim()})})},'إضافة'),
+ addgrp:()=>ask('قسم حفظ جديد',[{k:'n',label:'الاسم'}],v=>{if(v.n.trim())mut(()=>{const id=uid();S.mm.push({id,n:v.n.trim(),pk:'g'+id,lines:[]})})},'إضافة'),
+ addwo:()=>ask('مرحلة عبادات',[{k:'n',label:'الاسم'}],v=>{if(v.n.trim())mut(()=>S.wo.push({id:uid(),n:v.n.trim(),on:0,items:[]}))},'إضافة'),
+ addwi:el=>ask('بند عبادة',[{k:'n',label:'النص'}],v=>{if(v.n.trim())mut(()=>{const l=loc(el.dataset.i);if(l)l[0][l[1]].items.push({id:uid(),n:v.n.trim()})})},'إضافة'),
+ addlec:()=>ask('محاضرة جديدة',[{k:'n',label:'Lecture title (English)'},{k:'pos',label:'مكانها',type:'select',val:'end',opts:[['end','في النهاية'],['next','التالية مباشرة'],['start','في البداية']]}],v=>{if(!v.n.trim())return;mut(()=>{const o={id:uid(),n:v.n.trim(),done:0},L=S.lec;if(v.pos=='start')L.unshift(o);else if(v.pos=='next'){const i=L.findIndex(x=>!x.done);L.splice(i<0?L.length:i,0,o)}else L.push(o)},'أُضيفت المحاضرة')},'إضافة'),
+ addwr:()=>ask('خطوة مراجعة',[{k:'n',label:'النص'}],v=>{if(v.n.trim())mut(()=>S.wr.push({id:uid(),n:v.n.trim()}))},'إضافة'),
+ addev:()=>ask('معيار تقييم',[{k:'n',label:'النص'}],v=>{if(v.n.trim())mut(()=>S.ev.push({id:uid(),n:v.n.trim()}))},'إضافة'),
+ adddis:()=>ask('بند',[{k:'n',label:'النص'}],v=>{if(v.n.trim())mut(()=>S.dis.push({id:uid(),n:v.n.trim()}))},'إضافة'),
+ exp:()=>{const t=$('#bk');t.value=JSON.stringify(S);t.select();try{navigator.clipboard.writeText(t.value).then(()=>toast('نُسخت البيانات'),()=>toast('حدّد النص وانسخه'))}catch(e){toast('حدّد النص وانسخه')}},
+ imp:()=>{try{const o=JSON.parse($('#bk').value);if(!o.cur||!o.days)throw 0;mut(()=>{S=o},'استُوردت البيانات')}catch(e){toast('النص غير صالح')}},
+ reset:()=>ask('إعادة الضبط',[{msg:'ستُمسح كل التعديلات والتقدم، وتعود البيانات الافتراضية.'}],()=>mut(()=>{seed()},'أُعيد الضبط'),'إعادة')
+};
+function wkOf(el){const w=new Date(WKS);if(el.dataset.w!='this')w.setDate(w.getDate()+7);return w}
+function mv(id,dir){mut(()=>{const l=loc(id);if(!l)return;const j=l[1]+dir;if(j<0||j>=l[0].length)return;const a=l[0];[a[l[1]],a[j]]=[a[j],a[l[1]]]})}
+function advance(itemId){const l=loc(itemId);if(!l)return;const x=l[0][l[1]],old=x.bid,nb=nextOf(old);if(!nb){x.bid='';return}nb.ex=1;
+ Object.keys(S.days).forEach(d=>S.days[d].forEach(s=>s.items.forEach(i=>{if(i.k=='b'&&i.bid==old)i.bid=nb.id})))}
+const C={
+ f:(el)=>{const l=loc(el.dataset.i);if(!l)return;const o=l[0][l[1]],f=el.dataset.f;let v=el.type=='checkbox'?(el.checked?1:0):el.dataset.n?+el.value:el.value;
+  mut(()=>{o[f]=v;if(f=='st'&&IDX[o.id])syncSt(o);if(f=='st'&&v==2){if(IDX[o.id]&&IDX[o.id].k=='rd')fillRd();if(S.matn.includes(o))fillMatn()}if(f=='pos'&&v&&!o.pk)o.pk=o.id})},
+ chk:el=>{const k=el.dataset.k;if(el.checked)S.done[k]=1;else delete S.done[k];
+  const b=el.dataset.b&&IDX[el.dataset.b];if(b&&el.checked&&b.b.st==0){b.b.st=1;syncSt(b.b)}
+  if(el.dataset.u){const l=lec(el.dataset.u);if(l)l.done=el.checked?1:0}
+  const m=el.dataset.m&&S.matn.find(x=>x.id==el.dataset.m);if(m&&el.checked&&m.st==0)m.st=1;save();render()},
+ wchk:el=>{if(el.checked)S.done[el.dataset.k]=1;else delete S.done[el.dataset.k];save();render()},
+ lec:el=>{const l=lec(el.dataset.i);if(l){l.done=el.checked?1:0;if(l.done)l.dd=el.dataset.d||dk(today);else delete l.dd;save();render()}},
+ qt:el=>{const v=el.value.trim();if(v)S.qt[el.dataset.k]=v;else delete S.qt[el.dataset.k];save()},
+ pos:el=>{S.pos[el.dataset.k]=el.value;save()},
+ bpos:el=>{const o=IDX[el.dataset.i];if(o){o.b.pos=el.value;syncSt(o.b);save()}},
+ goal:el=>{S.g[dk(dateOf(SEL))]=el.value;save()},
+ evn:el=>{S.e[dk(WKS)].n=el.value;save()},
+ eval:el=>{const e=S.e[dk(WKS)];e.r[el.dataset.i]=+el.dataset.v;save();render()},
+ wgoal:el=>{const nw=new Date(WKS);nw.setDate(nw.getDate()+7);const np=S.wp[dk(nw)];np.goals[+el.dataset.i]=el.value;save()},
+ dchk:el=>{S.dc[el.dataset.i]=el.checked?1:0;save()},
+ mx:el=>{S.mx=+el.value;fillMatn();save();render()},
+ rmx:el=>{S.rmx=+el.value;fillRd();save();render()},
+ fcs:el=>{const w=wkOf(el),p=pairFor(w).map(s=>s?s.id:'');p[+el.dataset.i]=el.value;S.focus[dk(w)]=p;save();render()}
+};
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el||/^(INPUT|SELECT|TEXTAREA|OPTION)$/.test(el.tagName))return;const h=A[el.dataset.a];if(h){e.preventDefault();h(el,e)}});
+document.addEventListener('change',e=>{const el=e.target.closest('[data-a]');if(!el)return;const h=C[el.dataset.a];if(h)h(el,e)});
+document.addEventListener('toggle',e=>{const d=e.target;if(d.tagName=='DETAILS'&&d.dataset.id&&e.target.closest('main')){const id=d.dataset.id;if(d.open)S.ui[id]=1;else delete S.ui[id];save()}},true);
+
+load();WKS=wStart(today);SEL=dIdx(today);
+const h0=(location.hash||'').slice(1);TAB=TABS.some(t=>t[0]==h0)?h0:'day';
+render();
+})();
+</script>
+
+</body></html>
